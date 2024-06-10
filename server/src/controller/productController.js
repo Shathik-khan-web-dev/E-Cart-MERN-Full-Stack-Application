@@ -30,7 +30,7 @@ router.post("/product/post", async (req, res) => {
 });
 
 router.put("/product/update", async (req, res) => {
-  console.log(req.body);
+  console.log("Product Update: ", req.body);
   const {
     _id,
     productName,
@@ -56,7 +56,7 @@ router.put("/product/update", async (req, res) => {
 
   if (updateProduct) {
     res.status(200).json({
-      message: "Product updated successfully",
+      message: "Product Updated Successfully",
       updateProduct: updateProduct
     });
   }
@@ -69,7 +69,11 @@ router.delete("/product/delete/:id", async (req, res) => {
 
     await Product.findByIdAndDelete(id);
 
-    return res.status(200).json({ message: "Deleted Success" });
+    const updatedProducts = await Product.find();
+
+    return res
+      .status(200)
+      .json({ message: "Deleted Success", updatedProducts: updatedProducts });
   } catch (error) {
     return res.status(500).json({ message: "Error in Server..." });
   }
