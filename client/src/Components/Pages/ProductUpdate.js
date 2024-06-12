@@ -35,8 +35,16 @@ const ProductUpdate = () => {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
+
+    // Function to get the JWT token from local storage
+    const getToken = () => {
+      return localStorage.getItem("token"); // or sessionStorage.getItem("token")
+    };
+
     await axios
-      .put("http://localhost:5000/product/update", dataToSendBackend)
+      .put("http://localhost:5000/api/product/put", dataToSendBackend, {
+        headers: { Authorization: `Bearer ${getToken()}` }
+      })
       .then((res) => {
         console.log(res.data.message);
         toast.success(res.data.message, {

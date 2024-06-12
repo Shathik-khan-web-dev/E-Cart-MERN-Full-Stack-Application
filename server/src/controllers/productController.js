@@ -1,7 +1,6 @@
-const router = require("express").Router();
-const Product = require("../modal/productModal");
+const Product = require("../models/productModal");
 
-router.get("/product/get", async (req, res) => {
+const getProduct = async (req, res) => {
   try {
     const products = await Product.find();
     res.status(200).json({
@@ -11,9 +10,9 @@ router.get("/product/get", async (req, res) => {
   } catch (err) {
     res.status(400).send(err);
   }
-});
+};
 
-router.post("/product/post", async (req, res) => {
+const createProduct = async (req, res) => {
   console.log(req.body);
   //   return;
   const product = new Product(req.body);
@@ -27,9 +26,9 @@ router.post("/product/post", async (req, res) => {
   } catch (err) {
     res.status(400).send(err);
   }
-});
+};
 
-router.put("/product/update", async (req, res) => {
+const updateProduct = async (req, res) => {
   console.log("Product Update: ", req.body);
   const {
     _id,
@@ -60,9 +59,9 @@ router.put("/product/update", async (req, res) => {
       updateProduct: updateProduct
     });
   }
-});
+};
 
-router.delete("/product/delete/:id", async (req, res) => {
+const deleteProduct = async (req, res) => {
   try {
     const id = req.params.id;
     // console.log("Id to delete: ", id);
@@ -77,6 +76,11 @@ router.delete("/product/delete/:id", async (req, res) => {
   } catch (error) {
     return res.status(500).json({ message: "Error in Server..." });
   }
-});
+};
 
-module.exports = router;
+module.exports = {
+  getProduct,
+  createProduct,
+  updateProduct,
+  deleteProduct
+};
