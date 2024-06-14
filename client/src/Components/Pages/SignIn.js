@@ -36,7 +36,7 @@ const SignUp = () => {
         });
         setTimeout(() => {
           navigate("/");
-        }, 5000);
+        }, 2000);
       })
       .catch((err) => {
         console.log(err);

@@ -13,11 +13,11 @@ function ECartNavbar() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    console.log(token);
+    // console.log(token);
     if (token) {
       try {
         const decodedToken = jwtDecode(token);
-        console.log(decodedToken);
+        // console.log(decodedToken);
         setUserRole(decodedToken.role);
         setIsAuthenticated(true);
       } catch (error) {
@@ -47,15 +47,20 @@ function ECartNavbar() {
                 <Nav.Link href="/admin/product">Product Controller</Nav.Link>
               </>
             )}
-            <NavDropdown title="Dropdown" id="collapsible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+            <NavDropdown title="Electronics" id="collapsible-nav-dropdown">
+              <NavDropdown.Item href="/laptop">Laptop</NavDropdown.Item>
+              <NavDropdown.Item href="/mobile">Mobile</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Desktop</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="#action/3.4">Tablet</NavDropdown.Item>
+            </NavDropdown>
+            <NavDropdown title="Cloths" id="collapsible-nav-dropdown">
+              <NavDropdown.Item href="#action/3.1">Mens</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">Kids</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Women</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">
-                Separated link
+                Fashion Sale
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>

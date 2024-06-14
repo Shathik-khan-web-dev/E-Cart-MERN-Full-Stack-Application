@@ -3,6 +3,7 @@ const router = express.Router();
 
 const {
   getProduct,
+  getProductCategory,
   createProduct,
   updateProduct,
   deleteProduct
@@ -11,6 +12,12 @@ const {
 const { verifyToken, verifyRole } = require("../middleware/auth");
 
 router.get("/get", verifyToken, verifyRole(["admin", "user"]), getProduct);
+router.post(
+  "/get-product-category",
+  verifyToken,
+  verifyRole(["admin", "user"]),
+  getProductCategory
+);
 router.post("/post", verifyToken, verifyRole(["admin"]), createProduct);
 router.put("/put", verifyToken, verifyRole(["admin", "user"]), updateProduct);
 router.delete("/delete/:id", verifyToken, verifyRole(["admin"]), deleteProduct);

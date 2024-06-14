@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Container, Table } from "react-bootstrap";
+import { Container, Table, Button } from "react-bootstrap";
 import { MdSystemUpdateAlt, MdDelete } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -63,7 +63,12 @@ const ProductController = () => {
 
   return (
     <Container className="py-5">
-      <h3 className="pb-3">Product Controller</h3>
+      <div className="d-flex justify-content-between align-items-center pb-3">
+        <h3 className="m-0">Product Controller</h3>
+        <Button href="/product-add" variant="dark">
+          Add Product
+        </Button>
+      </div>
       <Table striped bordered hover>
         <thead>
           <tr>

@@ -12,6 +12,19 @@ const getProduct = async (req, res) => {
   }
 };
 
+const getProductCategory = async (req, res) => {
+  try {
+    const { productCategory } = req.body;
+    const products = await Product.find({ productCategory });
+    res.status(200).json({
+      message: "Products fetched successfully",
+      products: products
+    });
+  } catch (err) {
+    res.status(400).send(err);
+  }
+};
+
 const createProduct = async (req, res) => {
   console.log(req.body);
   //   return;
@@ -80,6 +93,7 @@ const deleteProduct = async (req, res) => {
 
 module.exports = {
   getProduct,
+  getProductCategory,
   createProduct,
   updateProduct,
   deleteProduct

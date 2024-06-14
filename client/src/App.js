@@ -16,6 +16,9 @@ import UserUpdate from "./Components/Pages/UserUpdate";
 import SignUp from "./Components/Pages/SignUp";
 import SignIn from "./Components/Pages/SignIn";
 import Home from "./Components/Pages/Home";
+import ProductAdd from "./Components/Pages/ProductAdd";
+import Laptop from "./Components/Pages/Electronics/Laptop";
+import Mobile from "./Components/Pages/Electronics/Mobile";
 
 const App = () => {
   return (
@@ -32,6 +35,9 @@ const App = () => {
           <Route path="/user-update" element={<UserUpdate />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/product-add" element={<ProductAdd />} />
+          <Route path="/laptop" element={<Laptop />} />
+          <Route path="/mobile" element={<Mobile />} />
         </Routes>
       </div>
     </Router>
