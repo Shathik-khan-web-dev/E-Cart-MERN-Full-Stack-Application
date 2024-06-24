@@ -1,11 +1,21 @@
 const Product = require("../models/productModal");
-
 const getProduct = async (req, res) => {
   try {
-    const products = await Product.find();
+    const query = req.query.query;
+    let products;
+
+    if (query) {
+      // Assuming you're using Mongoose and your product model has a 'name' field
+      products = await Product.find({
+        productName: { $regex: query, $options: "i" },
+      });
+    } else {
+      products = await Product.find();
+    }
+
     res.status(200).json({
       message: "Products fetched successfully",
-      products: products
+      products: products,
     });
   } catch (err) {
     res.status(400).send(err);
@@ -18,7 +28,7 @@ const getProductCategory = async (req, res) => {
     const products = await Product.find({ productCategory });
     res.status(200).json({
       message: "Products fetched successfully",
-      products: products
+      products: products,
     });
   } catch (err) {
     res.status(400).send(err);
@@ -34,7 +44,7 @@ const createProduct = async (req, res) => {
     const savedProduct = await product.save();
     res.status(201).json({
       message: "Product saved successfully",
-      savedProduct: savedProduct
+      savedProduct: savedProduct,
     });
   } catch (err) {
     res.status(400).send(err);
@@ -50,7 +60,7 @@ const updateProduct = async (req, res) => {
     productDescription,
     productImage,
     productCategory,
-    productQuantity
+    productQuantity,
   } = req.body;
 
   const updateProduct = await Product.findByIdAndUpdate(
@@ -61,7 +71,7 @@ const updateProduct = async (req, res) => {
       productDescription,
       productImage,
       productCategory,
-      productQuantity
+      productQuantity,
     },
     { new: true }
   );
@@ -69,7 +79,7 @@ const updateProduct = async (req, res) => {
   if (updateProduct) {
     res.status(200).json({
       message: "Product Updated Successfully",
-      updateProduct: updateProduct
+      updateProduct: updateProduct,
     });
   }
 };
@@ -96,5 +106,5 @@ module.exports = {
   getProductCategory,
   createProduct,
   updateProduct,
-  deleteProduct
+  deleteProduct,
 };
